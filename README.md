@@ -24,7 +24,7 @@ In this Docker Techlab you're going to learn the basics behind the container tec
 1. [Embedding the Source Code](docs/08_dev_port.md)
 1. [Linking Frontend and Backend](docs/09_frontend_backend.md)
 1. [Building Your Own Docker Image](docs/10_build_image.md)
-  * [Multistage Builds](docs/10_1_multistage_build.md)
+    1. [Multistage Builds](docs/10_1_multistage_build.md)
 1. [Troubleshooting](docs/11_troubleshooting.md)
 1. [Orchestration](docs/12_compose.md)
 1. [Registry and Docker Hub](docs/13_dockerhub.md)
