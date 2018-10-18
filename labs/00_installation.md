@@ -1,5 +1,16 @@
 # Docker Lab: Installation
 
+## Preparation
+
+First it's a good idea to clone the git repository which contains the labs so everything's available locally.
+
+```
+$ cd [git repo project folder]
+$ git clone https://github.com/puzzle/docker-techlab.git
+```
+
+Alternatively the repository can be downloaded as a [zip file](https://github.com/puzzle/docker-techlab/archive/master.zip).
+
 ## Try Docker without Installation
 
 The page <https://training.play-with-docker.com> offers additional tutorials which also come with an interactive shell. The disadvantage is that you have to create an account, but if you don't want to install Docker locally, this is a great way to do the exercises in this Techlab using a Browser-based Docker shell.
