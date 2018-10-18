@@ -33,6 +33,13 @@ When asked to use Windows container, choose NOT to.
 * [Windows](https://docs.docker.com/docker-for-windows/install/#install-docker-for-windows-desktop-app)
 * [Mac](https://docs.docker.com/docker-for-mac/install/)
 
+### Proxy Configuration
+
+If your organization has a proxy in place you have to configure it in your Docker configuration in order to be able to do `docker search` or `docker pull`.
+
+* [Instructions to configure a proxy on Windows](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/configure-docker-daemon#proxy-configuration)
+* [Instructions to configure a proxy on Mac](https://docs.docker.com/docker-for-mac/#proxies)
+
 ## Installation for Linux
 
 Follow the instructions for your appropriate distribution. The recommended way of installing is using the repository, except if you already know you're going to remove the package again soon.
