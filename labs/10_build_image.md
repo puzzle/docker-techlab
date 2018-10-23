@@ -197,6 +197,16 @@ ADD ./php-app/ /var/www/html/
 RUN docker-php-ext-install mysqli
 ```
 
+**Note**: The `docker-php-ext-install` command will most probably not be able to download the required dependencies if there's a proxy in the way. In this case you can use the already built image `puzzle/php-apache-mysqli` for the following labs. Instead of above Dockerfile you'd use:
+
+```bash
+FROM puzzle/php-apache-mysqli
+
+# Copies the php source code to the correct location
+ADD ./php-app/ /var/www/html/
+```
+
+
 ### Build the php-app Image
 
 **Note**: Stop and delete the running php-app container first. Leave the database container running.
@@ -206,8 +216,6 @@ If you're not still inside the php-app directory, now's the time to change into 
 ```bash
 docker build -t php-app .
 ```
-
-If the `docker-php-ext-install` command can't download the required dependencies, you can use the already built image `puzzle/php-apache-mysqli` for the following labs.
 
 
 ### Run the php-app Container
