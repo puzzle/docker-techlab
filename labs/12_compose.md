@@ -19,7 +19,7 @@ docker run --name mariadb-container-with-existing-external-volume -v$(pwd)/datas
 and
 
 ```
-docker run -itd --name php-app -p8080:80 --link mariadb-container-with-existing-external-volume php-app
+docker run -itd --name php-app -p80:80 --link mariadb-container-with-existing-external-volume php-app
 ```
 
 We now create a file called `docker-compose.yml`:
@@ -33,8 +33,8 @@ services:
     image: php-app
     ports:
       - '8080:80'
-    links:
-      - mariadb-container-with-existing-external-volume
+    networks:
+      - docker-techlab
 
   mariadb-container-with-existing-external-volume:
     image: mariadb
@@ -42,6 +42,11 @@ services:
       - MYSQL_ROOT_PASSWORD=my-secret-pw
     volumes:
       - './datastore-mysql:/var/lib/mysql'
+    networks:
+      - docker-techlab
+
+networks:
+  docker-techlab:
 ```
 
 For each of the `docker run` commands, you add an entry under `services`, containing the appropriate options. The various options are described in the [Compose file reference](https://docs.docker.com/compose/compose-file/).
