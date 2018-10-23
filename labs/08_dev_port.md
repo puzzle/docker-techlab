@@ -55,6 +55,8 @@ That's it for the app part.
 Make sure you're outside that freshly created app directory when you execute the next commands.
 
 Now you can mount the php-app into your docker container via
+**Tipp:** you might want to set the absolute path on the -v option eg. `-v c:/temp/php-app:/var/www/html`
+
 
 `$ docker run -itd --name apache-php -v php-app:/var/www/html  php:7-apache`
 
