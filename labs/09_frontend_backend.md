@@ -45,11 +45,11 @@ $ docker run -itd --network docker-techlab --name apache-php -v php-app:/var/www
 $ docker run -itd --network docker-techlab --name mariadb-container-with-existing-external-volume -v datastore-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw mariadb
 ```
 
-If you now access the containers you should be able to ping the other container with the container name.
+If you now access the containers you should be able to resolve the other's container address with its container name.
 
 ``` bash
 $ docker exec -it mariadb-container-with-existing-external-volume bash
-$ ping apache-php
+$ getent hosts apache-php
 ```
 
 Now the two containers can talk to each other. Let's check this:
