@@ -84,11 +84,11 @@ If everything worked as expected you should now have been connected as peter to 
 
 ```bash
 MariaDB [(none)]> SELECT USER();
-+-----------------+
-| USER()          |
-+-----------------+
-| peter@localhost |
-+-----------------+
++---------+
+| USER()  |
++---------+
+| peter@% |
++---------+
 1 row in set (0.00 sec)
 ```
 
