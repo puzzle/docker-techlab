@@ -55,7 +55,7 @@ Okay, let's create a new user in the mariadb container:
 1. `docker exec -it mariadb-container-with-external-volume bash`
 2. `mysql -uroot -pmy-secret-pw`
 3. In the mysql-client: `use mysql`
-4. In the mysql-client: `CREATE USER 'peter'@'localhost' IDENTIFIED BY 'venkman';`
+4. In the mysql-client: `CREATE USER 'peter'@'%' IDENTIFIED BY 'venkman';`
 
 Once all steps are done you can quit the mysql session. (If you want to test if peter has been created correctly just login using his credentials).
 
