@@ -207,6 +207,9 @@ If you're not still inside the php-app directory, now's the time to change into 
 docker build -t php-app .
 ```
 
+If the `docker-php-ext-install` command can't download the required dependencies, you can use the already built image `puzzle/php-apache-mysqli` for the following labs.
+
+
 ### Run the php-app Container
 
 ```bash
