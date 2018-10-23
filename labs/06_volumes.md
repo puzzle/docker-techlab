@@ -13,7 +13,7 @@ Change into an appropriate directory. Now create a directory named `datastore-my
 With the parameter `-v` you can now state where to attach the volume, e.g.:
 
 ```bash
-docker run --name mariadb-container-with-external-volume -v datastore-mysql:/var/lib/mysql -it -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
+docker run --name mariadb-container-with-external-volume -v datastore-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
 ```
 
 Once the container is up and running let's have a look into the datastore directory:
@@ -56,7 +56,7 @@ It's getting interesting...
 We are creating a new mariadb container with the datastorage volume:
 
 ```bash
-docker run --name mariadb-container-with-existing-external-volume -v datastore-mysql:/var/lib/mysql -it -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
+docker run --name mariadb-container-with-existing-external-volume -v datastore-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
 ```
 
 The moment of truth... Connect to the database server:
