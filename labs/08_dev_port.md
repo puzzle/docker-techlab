@@ -79,7 +79,7 @@ But let's not assume this right now! Or simply use a port other than 80.
 As you might have guessed it's again a parameter named `-p[local]:[container]` that you can set:
 
 ```bash
-docker run -itd --name apache-php -v php-app:/var/www/html -p80:80 php:7-apache
+docker run -itd --name apache-php -v php-app:/var/www/html -p8080:80 php:7-apache
 ```
 
 **Note:** Do not forget to stop/remove the existing instance of the apache-php container.
@@ -94,8 +94,8 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 6f08ac657320        mariadb             "docker-entrypoint..."   5 hours ago         Up 2 hours          3306/tcp             mariadb-container
 ```
 
-You see that every request coming to port 80 on your local machine is forwarded to your Docker instance's port 80.
-If you now type <http://localhost/index.php> in your browser you should get the message: "Welcome to Docker...".
+You see that every request coming to port 8080 on your local machine is forwarded to your Docker instance's port 80.
+If you now type <http://localhost:8080/index.php> in your browser you should get the message: "Welcome to Docker...".
 
 **Note for play-with-docker.com:** To access the frontend app, you have to use a special url.
 

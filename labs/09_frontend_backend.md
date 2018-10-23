@@ -13,7 +13,7 @@ If you have properly worked through all the previous labs you should now have th
 ```bash
 $ docker container ls
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                NAMES
-6b0721fa6103        php:7-apache        "docker-php-entryp..."   25 minutes ago      Up 25 minutes       0.0.0.0:80->80/tcp   apache-php
+6b0721fa6103        php:7-apache        "docker-php-entryp..."   25 minutes ago      Up 25 minutes       0.0.0.0:8080->80/tcp   apache-php
 50197361e87b        mariadb             "docker-entrypoint..."   2 hours ago         Up 2 hours          3306/tcp             mariadb-container-with-existing-external-volume
 6f08ac657320        mariadb             "docker-entrypoint..."   5 hours ago         Up 3 hours          3306/tcp             mariadb-container
 ```
@@ -41,7 +41,7 @@ If you now rerun the list command for Docker networks you should see the newly c
 To make the backend accessable/visible to the fronend (via Container-NAMES) you have to run both containers with the `--network` option:
 
 ```bash
-$ docker run -itd --network docker-techlab --name apache-php -v php-app:/var/www/html -p80:80 php:7-apache
+$ docker run -itd --network docker-techlab --name apache-php -v php-app:/var/www/html -p8080:80 php:7-apache
 $ docker run -itd --network docker-techlab --name mariadb-container-with-existing-external-volume -v datastore-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw mariadb
 ```
 
