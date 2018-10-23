@@ -16,6 +16,20 @@ With the parameter `-v` you can now state where to attach the volume, e.g.:
 docker run --name mariadb-container-with-external-volume -v datastore-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
 ```
 
+On Windows this command probably does not work because the path cannot be relative. Use these alternatives instead:
+
+Powershell:
+
+```bash
+docker run --name mariadb-container-with-external-volume -v C:\...\datastore-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
+```
+
+Windows bash:
+
+```bash
+docker run --name mariadb-container-with-external-volume -v //c/.../datastore-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
+```
+
 Once the container is up and running let's have a look into the datastore directory:
 
 ```bash
