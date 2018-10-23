@@ -19,7 +19,7 @@ docker run --name mariadb-container-with-existing-external-volume -v$(pwd)/datas
 and
 
 ```
-docker run -itd --name php-app -p80:80 --link mariadb-container-with-existing-external-volume php-app
+docker run -itd --name php-app -p8080:80 --link mariadb-container-with-existing-external-volume php-app
 ```
 
 We now create a file called `docker-compose.yml`:
@@ -32,7 +32,7 @@ services:
   php-app:
     image: php-app
     ports:
-      - '80:80'
+      - '8080:80'
     links:
       - mariadb-container-with-existing-external-volume
 
