@@ -2,11 +2,13 @@
 
 Instead of managing the containers with the `docker` command, you may use [Docker Compose](https://docs.docker.com/compose/) to handle them.
 
-First, install the `docker-compose` command:
+First **if on Ubuntu** install the `docker-compose` command:
 
 ```
 sudo apt-get install docker-compose
 ```
+
+**Note:** On Windows the Docker installer usually includes `docker-compose` already.
 
 ## Docker Compose file
 
