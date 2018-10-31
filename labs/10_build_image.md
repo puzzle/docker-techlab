@@ -14,7 +14,7 @@ The basic docs on how Dockerfiles work can be found at <https://docs.docker.com/
 
 ## Write Your First Dockerfile
 
-For that we create a new directory and create an empty Dockerfile in there.
+For that we create a new directory and create an empty Dockerfile in there. You can either use vim or the editor of your choice.
 
 ```bash
 mkdir myfirstimage
@@ -26,8 +26,9 @@ Add the following content to your Dockerfile:
 
 ```bash
 FROM ubuntu
-RUN apt-get update
-RUN apt-get install -y figlet
+RUN apt-get update && \
+    apt-get install -y figlet && \
+    apt-get clean
 ```
 
 * `FROM` indicates the base image for our build
@@ -57,13 +58,11 @@ The output of the Docker build looks like this:
 ```bash
 docker build -t myfirstimage .
 Sending build context to Docker daemon  2.048kB
-Step 1/3 : FROM ubuntu
- ---> 42118e3df429
-Step 2/3 : RUN apt-get update
- ---> 48fb734e0326
-Step 3/3 : RUN apt-get install -y figlet
- ---> ccd7cf351f38
-Successfully built ccd7cf351f38
+Step 1/2 : FROM ubuntu
+ ---> ea4c82dcd15a
+Step 2/2 : RUN apt-get update &&     apt-get install -y figlet &&     apt-get clean
+ ---> b3c08112fd1c
+Successfully built b3c08112fd1c
 Successfully tagged myfirstimage:latest
 ```
 
@@ -85,21 +84,19 @@ Sending build context to Docker daemon 84.48 kB
 ```bash
 docker build -t myfirstimage .
 Sending build context to Docker daemon  2.048kB
-Step 1/3 : FROM ubuntu
- ---> 42118e3df429
-Step 2/3 : RUN apt-get update
- ---> 48fb734e0326
-Step 3/3 : RUN apt-get install -y figlet
- ---> ccd7cf351f38
-Successfully built ccd7cf351f38
+Step 1/2 : FROM ubuntu
+ ---> ea4c82dcd15a
+Step 2/2 : RUN apt-get update &&     apt-get install -y figlet &&     apt-get clean
+ ---> b3c08112fd1c
+Successfully built b3c08112fd1c
 Successfully tagged myfirstimage:latest
 ```
 
-* A container (42118e3df429) is created from the base image
+* A container (ea4c82dcd15a) is created from the base image
   * The base image will be pulled, if it was not pulled before
 * The `RUN` command is executed in this container
-* The container is committed into an image (48fb734e0326)
-* The build container (42118e3df429) is removed
+* The container is committed into an image (b3c08112fd1c)
+* The build container (ea4c82dcd15a) is removed
 * The output of this step will be the base image for the next one
 * ...
 
