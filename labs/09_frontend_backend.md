@@ -41,8 +41,8 @@ If you now rerun the list command for Docker networks you should see the newly c
 To make the backend accessable/visible to the fronend (via Container-NAMES) you have to run both containers with the `--network` option:
 
 ```bash
-$ docker run -itd --network docker-techlab --name apache-php -v php-app:/var/www/html -p8080:80 php:7-apache
-$ docker run -itd --network docker-techlab --name mariadb-container-with-existing-external-volume -v datastore-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw mariadb
+$ docker run -itd --network docker-techlab --name apache-php -v /home/[path]/php-app:/var/www/html -p8080:80 php:7-apache
+$ docker run -itd --network docker-techlab --name mariadb-container-with-existing-external-volume -v volume-mariadb:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw mariadb
 ```
 
 If you now access the containers you should be able to resolve the other's container address with its container name.

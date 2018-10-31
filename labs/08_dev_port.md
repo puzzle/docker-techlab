@@ -54,15 +54,12 @@ That's it for the app part.
 
 Make sure you're outside that freshly created app directory when you execute the next commands.
 
-Now you can mount the php-app into your docker container via
+Now you can mount the php-app as host directory into your docker container via
 
-**Tipp:** you might want to set the absolute path on the -v option eg. `-v c:/temp/php-app:/var/www/html`
-
-
-`$ docker run -itd --name apache-php -v php-app:/var/www/html  php:7-apache`
+**Tipp:** you need to set the absolute path on the -v option eg. `-v /home/[path]/php-app` `-v c:/temp/php-app:/var/www/html`
 
 ```bash
-docker run -itd --name apache-php -v php-app:/var/www/html  php:7-apache
+docker run -it --name apache-php -v /home/[path]/php-app:/var/www/html  php:7-apache
 ```
 
 **Note:** Do not forget to stop/remove the existing instance of the apache-php container.
@@ -79,7 +76,7 @@ But let's not assume this right now! Or simply use a port other than 80.
 As you might have guessed it's again a parameter named `-p[local]:[container]` that you can set:
 
 ```bash
-docker run -itd --name apache-php -v php-app:/var/www/html -p8080:80 php:7-apache
+docker run -it --name apache-php -v /home/[path]/php-app:/var/www/html -p8080:80 php:7-apache
 ```
 
 **Note:** Do not forget to stop/remove the existing instance of the apache-php container.

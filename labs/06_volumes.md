@@ -9,11 +9,31 @@ Answer: It's gone. The docker instance has no persistence layer to store data pe
 ## Mounting a Volume in a Container
 
 The mariadb container is fortunately a good example as to why it's good to have an external volume.
-Change into an appropriate directory. Now create a directory named `datastore-mysql` but don't change into it (shell command: `mkdir datastore-mysql`).
+There are several possibilities on how to work with volumes on docker, in this case, we're going to create a docker volume, that is managed by docker itself.
+
+**Lab:** Checkout [Docker's Volumes documentation](https://docs.docker.com/storage/volumes/#choose-the--v-or---mount-flag) and create a Docker volume for your mariadb container to store the persistent data on it.
+
+Create the docker managed volume with:
+```
+$ docker volume create volume-mariadb
+```
+
+Now let's use the created volume and attach it to the mariadb
+
 With the parameter `-v` you can now state where to attach the volume, e.g.:
 
 ```bash
-docker run --name mariadb-container-with-external-volume -v datastore-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
+docker run --name mariadb-container-with-external-volume -v volume-mariadb:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
+```
+
+### Using a host directory as volume 
+
+**Hint:** The local path as volume does not work on windows with the mariadb due to the storage driver setup, so only read the instructions if you're working on windows
+
+We need to create a directory named `datastore-mariadb` but don't change into it (shell command: `mkdir datastore-mariadb`).
+
+```bash
+docker run --name mariadb-container-with-path-volume -v /[absolute path to your directory]/datastore-mariadb:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
 ```
 
 On Windows this command probably does not work because the path cannot be relative. Use these alternatives instead:
@@ -21,19 +41,21 @@ On Windows this command probably does not work because the path cannot be relati
 Powershell:
 
 ```bash
-docker run --name mariadb-container-with-external-volume -v C:\...\datastore-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
+docker run --name mariadb-container-with-path-volume -v C:\...\datastore-mariadb:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
 ```
 
 Windows bash:
 
 ```bash
-docker run --name mariadb-container-with-external-volume -v //c/.../datastore-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
+docker run --name mariadb-container-with-path-volume -v //c/.../datastore-mariadb:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
 ```
 
 Once the container is up and running let's have a look into the datastore directory:
 
+**Hint:** use `dir` instead of `ls -la` on Windows
+
 ```bash
-$ ls -la datastore-mysql/
+$ ls -la datastore-mariadb/
 total 122944
 drwxrwxr-x 4 guest-r0bhvk docker     4096 Mai 31 08:50 .
 drwxrwxr-x 5 user         user       4096 Mai 31 08:49 ..
@@ -57,7 +79,7 @@ Okay, let's create a new user in the mariadb container:
 3. In the mysql-client: `use mysql`
 4. In the mysql-client: `CREATE USER 'peter'@'%' IDENTIFIED BY 'venkman';`
 
-Once all steps are done you can quit the mysql session. (If you want to test if peter has been created correctly just login using his credentials).
+Once all steps are done you can quit(`exit;`) the mysql session and exit the container(`crtl d`). (If you want to test if peter has been created correctly just login using his credentials).
 
 Now we have to stop and remove the mariadb-container-with-external-volume container.
 
@@ -70,7 +92,7 @@ It's getting interesting...
 We are creating a new mariadb container with the datastorage volume:
 
 ```bash
-docker run --name mariadb-container-with-existing-external-volume -v datastore-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
+docker run --name mariadb-container-with-existing-external-volume -v volume-mariadb:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb
 ```
 
 The moment of truth... Connect to the database server:
@@ -80,15 +102,15 @@ $ docker exec -it mariadb-container-with-existing-external-volume bash
 root@6f08ac657320:/# mysql -upeter -pvenkman
 ```
 
-If everything worked as expected you should now have been connected as peter to your database instance. You can test this by using the `SELECT USER()` statement in the sql client.
+If everything worked as expected you should now have been connected as peter to your database instance. You can test this by using the `SELECT USER();` statement in the sql client.
 
 ```bash
 MariaDB [(none)]> SELECT USER();
-+---------+
-| USER()  |
-+---------+
-| peter@% |
-+---------+
++-----------------+
+| USER()          |
++-----------------+
+| peter@localhost |
++-----------------+
 1 row in set (0.00 sec)
 ```
 
