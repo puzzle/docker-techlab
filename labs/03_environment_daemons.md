@@ -69,7 +69,7 @@ Version: '10.3.7-MariaDB-1:10.3.7+maria~jessie'  socket: '/var/run/mysqld/mysqld
 ```
 
 The problem is that you are now stuck in this console.
-To return to your shell press `CTRL p` and than `CTRL q`
+To return to your shell press `CTRL p` and than `CTRL q` **Hint:** this might not be working on windows, since there might be set other actions to `CTRL p` and `CTRL q` like Bingsearch for example.
 This will leave the container running while you are back in your shell. To see that the container is really running use the command:
 
 `docker container ls`
