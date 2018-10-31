@@ -26,7 +26,7 @@ echo "Welcome to Docker (my young padawan)!";
 
 * create directory with this shell command: `mkdir php-app`
 * create file with this shell command: `touch index.php`
-* click on the EDITOR button
+* open your editor
 * select the folder and then the file
 * add the content and save the changes
 
@@ -59,10 +59,10 @@ Now you can mount the php-app as host directory into your docker container via
 **Tipp:** you need to set the absolute path on the -v option eg. `-v /home/[path]/php-app` `-v c:/temp/php-app:/var/www/html`
 
 ```bash
-docker run -it --name apache-php -v /home/[path]/php-app:/var/www/html  php:7-apache
+docker run -d --name apache-php -v /home/[path]/php-app:/var/www/html  php:7-apache
 ```
 
-**Note:** Do not forget to stop/remove the existing instance of the apache-php container.
+**Note:** Do not forget to stop/remove the existing instance of the apache-php container before you start a new one.
 
 You can now check if the error is still present OR you wait until the second question is answered.
 
@@ -79,7 +79,7 @@ As you might have guessed it's again a parameter named `-p[local]:[container]` t
 docker run -it --name apache-php -v /home/[path]/php-app:/var/www/html -p8080:80 php:7-apache
 ```
 
-**Note:** Do not forget to stop/remove the existing instance of the apache-php container.
+**Note:** Do not forget to stop/remove the existing instance of the apache-php container before you start a new one.
 
 If you take a look into `docker container ls` you'll find an interesting change for the PORT column
 

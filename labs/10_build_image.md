@@ -218,7 +218,7 @@ docker build -t php-app .
 ### Run the php-app Container
 
 ```bash
-docker run -itd --network docker-techlab --name php-app -p8080:80 php-app
+docker run -d --network docker-techlab --name php-app -p8080:80 php-app
 ```
 
 Now open a browser and navigate to <http://localhost/db.php>.

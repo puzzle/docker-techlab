@@ -51,7 +51,7 @@ So Docker labels it that way.
 
 Now we can deploy the new container using the correct tag.
 
-`$ docker run -itd --name apache-php php:7-apache`
+`$ docker run -d --name apache-php php:7-apache`
 
 With `docker container ls` you see that the new container is running.
 
@@ -64,7 +64,7 @@ b901d6c0473a        php:7-apache        "docker-php-entryp..."   18 seconds ago 
 
 ```
 
-Okay so let's try to connect to the server:
+Okay so let's try to connect to the server, via the container assigned docker IP address:
 
 ```bash
 $ docker inspect apache-php | grep IPAddress
@@ -78,6 +78,8 @@ $ docker inspect apache-php | grep IPAddress
 With the IP from the inspection we can now navigate to the webserver at <http://172.17.0.4>.
 
 And unfortunatly we get a "403 Error - Forbidden".
+
+**Note:** Do not forget to remove the existing instance of the apache-php container.
 
 **Note for play-with-docker.com:** This is not possible without port forwarding, see next lab.
 
