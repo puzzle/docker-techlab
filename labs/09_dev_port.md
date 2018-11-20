@@ -104,5 +104,5 @@ Question: Can I somehow link the containers together so they can talk to each ot
 
 The answer lies in the next lab.
 
-[← Frontend Container](07_frontend_containers.md) |
-[Linking Frontend and Backend →](09_frontend_backend.md)
+[← Frontend Container](08_frontend_containers.md) |
+[Linking Frontend and Backend →](10_frontend_backend.md)

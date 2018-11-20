@@ -123,5 +123,5 @@ Read more about docker multi stage builds under https://docs.docker.com/develop/
 Turn the docker build from the first example (Java Spring boot https://github.com/appuio/example-spring-boot-helloworld) into a docker multistage build.
 
 
-[← Building your own Docker image](10_build_image.md) |
-[Troubleshooting →](11_troubleshooting.md)
+[← Building your own Docker image](11_build_image.md) |
+[Troubleshooting →](12_troubleshooting.md)

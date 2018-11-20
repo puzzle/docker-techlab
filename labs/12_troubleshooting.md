@@ -229,5 +229,5 @@ docker rmi $(docker images -q)
 you can use the `docker system prune` command to keep your production environment clean
  
 
-[← Multi Stage Builds](10_1_multistage_build.md) |
-[Orchestration →](12_compose.md)
+[← Multi Stage Builds](11_1_multistage_build.md) |
+[Orchestration →](13_compose.md)

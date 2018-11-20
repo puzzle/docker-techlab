@@ -87,5 +87,5 @@ Question: Why? Why do I get this error? And is there no other way to access the 
 
 Go on and find the answers in the next lab.
 
-[← Working with volumes](06_volumes.md) |
-[Embedding the Source Code→](08_dev_port.md)
+[← Working with volumes](07_volumes.md) |
+[Embedding the Source Code→](09_dev_port.md)

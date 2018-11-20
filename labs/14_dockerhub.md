@@ -156,5 +156,5 @@ Make a change in your Dockerfile and check for triggered builds.
 Visit https://hub.docker.com/, https://docker.com/, https://quay.io/ and compare the features available for free and subscription based plans.
 Take a look at the security image scan functionalities of those services.
 
-[← Orchestration](12_compose.md) |
-[Bestpractices →](14_bestpractices.md)
+[← Orchestration](13_compose.md) |
+[Bestpractices →](15_bestpractices.md)

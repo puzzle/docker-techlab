@@ -61,5 +61,5 @@ docker-compose up
 
 Then again, check localhost/db.php in the browser.
 
-[← Troubleshooting](11_troubleshooting.md) |
-[Registry and Docker Hub →](13_dockerhub.md)
+[← Troubleshooting](12_troubleshooting.md) |
+[Registry and Docker Hub →](14_dockerhub.md)

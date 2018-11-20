@@ -67,5 +67,5 @@ Unrelated to what distribution you use, also have a look at the post-installatio
 
 
 [← Overview](README.md) |
-[Getting Started →](01_hello_world.md)
+[Getting Started →](02_hello_world.md)
 

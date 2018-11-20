@@ -141,5 +141,5 @@ At the moment, `overlay2` is the [recommended storage driver](https://docs.docke
 
 **Hint:** Use `docker volume create <name>` and `docker run -v <name>:<path> …` commands.
 
-[← Names](05_names.md) |
-[Frontend Container →](07_frontend_containers.md)
+[← Names](06_names.md) |
+[Frontend Container →](08_frontend_containers.md)

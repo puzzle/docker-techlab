@@ -125,5 +125,5 @@ Question: Is there only a "hello world" Docker image?
 Maybe the next Lab will provide some answers?
 
 
-[← Installation](00_installation.md) |
-[Images →](02_images.md)
+[← Installation](01_installation.md) |
+[Images →](03_images.md)

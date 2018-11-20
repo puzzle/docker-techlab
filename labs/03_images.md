@@ -77,5 +77,5 @@ Question: What's wrong? Am I an idiot?
 
 Check out the next lab.
 
-[← Getting Started](01_hello_world.md)  |
-[Environment Variables →](03_environment_daemons.md)
+[← Getting Started](02_hello_world.md)  |
+[Environment Variables →](04_environment_daemons.md)

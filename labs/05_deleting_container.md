@@ -61,5 +61,5 @@ Question: Where do these strange names come from?
 
 Obviously you will find it out... in the next lab!
 
-[← Environment Variables](03_environment_daemons.md) |
-[Names →](05_names.md)
+[← Environment Variables](04_environment_daemons.md) |
+[Names →](06_names.md)

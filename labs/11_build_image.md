@@ -231,5 +231,5 @@ Fix the code in the db.php file. According to the continuous delivery principles
 **Hint**: Use the PHP function `getenv("WHAT_EVER_KEY")` to read config values from environment variables inside the frontend container. You might want to use the `-e` parameter to set an environment variable inside a container while running it (`docker run -e`).
 
 
-[← Linking Frontend and Backend](09_frontend_backend.md) |
-[Multi Stage Builds →](10_1_multistage_build.md)
+[← Linking Frontend and Backend](10_frontend_backend.md) |
+[Multi Stage Builds →](11_1_multistage_build.md)

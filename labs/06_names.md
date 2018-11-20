@@ -95,5 +95,5 @@ Question: Hmm, I have a container with a DB Server running... But when I remove 
 
 Let's find out in... the next lab!
 
-[← Deleting Container](04_deleting_container.md) |
-[Working with Volumes →](06_volumes.md)
+[← Deleting Container](05_deleting_container.md) |
+[Working with Volumes →](07_volumes.md)

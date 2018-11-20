@@ -61,5 +61,5 @@ Question: I don't want to go to the Docker instance and install every missing ex
 
 I'm sure there is, let's check out the next lab to find out how.
 
-[← Embedding the Source Code](08_dev_port.md) |
-[Building Your Own Docker Image →](10_build_image.md)
+[← Embedding the Source Code](09_dev_port.md) |
+[Building Your Own Docker Image →](11_build_image.md)

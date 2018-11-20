@@ -138,5 +138,5 @@ Question: Do we need two running mariadb containers at the same time for this la
 
 Find out in the next lab.
 
-[← Images](02_images.md)  |
-[Deleting Container →](04_deleting_container.md)
+[← Images](03_images.md)  |
+[Deleting Container →](05_deleting_container.md)
