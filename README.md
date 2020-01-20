@@ -42,7 +42,6 @@ In this Docker Techlab you're going to learn the basics behind the container tec
 
 ## Additional Docs
 
-* [handout from strategic docker course](https://files.puzzle.ch/index.php/apps/files/?dir=/swe/P24_Personalentwicklung/Kurs_und_Veranstaltungsunterlagen/Docker-Schulung%202016&fileid=567212)
 * [Official Docker Docs](https://docs.docker.com)
 
 
