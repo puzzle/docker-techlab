@@ -33,10 +33,10 @@ In this Docker Techlab you're going to learn the basics behind the container tec
 
 ### Extended Labs
 
-1. create a docker image for your own application
-1. use [docker compose](https://docs.docker.com/compose/) to define multi-container docker applications for dev environments
-1. read and study the [OpenShift image creation guide](https://docs.openshift.com/container-platform/3.6/creating_images/guidelines.html)
-1. create a docker hub account and create a docker build for your own docker image (Dockerfile hosted on github)
+1. Create a container image for your own application
+1. Use [Docker Compose](https://docs.docker.com/compose/) to define multi-container applications for dev environments
+1. Read and study the [OpenShift image creation guide](https://docs.openshift.com/container-platform/3.11/creating_images/guidelines.html)
+1. Create a Docker Hub account and therein a build for your own container image (Dockerfile hosted on GitHub)
 
 
 ## Additional Docs
