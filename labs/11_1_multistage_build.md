@@ -100,7 +100,7 @@ Multi stage Docker build:
 ```
 FROM golang:1.9
 WORKDIR /go/src/myapp
-RUN go get -d -v golang.org/x/net/html  
+RUN go get -d -v golang.org/x/net/html
 COPY app.go .
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
 
@@ -108,7 +108,25 @@ FROM alpine:3.6
 RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 COPY --from=0 /go/src/myapp .
-CMD ["./app"]  
+CMD ["./app"]
+```
+
+Content of the Go application `app.go`:
+```
+package main
+import (
+        "net/http"
+        "fmt"
+)
+
+func main() {
+        http.HandleFunc("/", hello)
+        http.ListenAndServe(":8180", nil)
+}
+
+func hello(w http.ResponseWriter, r *http.Request) {
+        fmt.Fprint(w, "Docker workshop")
+}
 ```
 
 ## Multi Stage Builds
@@ -121,6 +139,52 @@ Read more about docker multi stage builds under https://docs.docker.com/develop/
 ## LAB: create a multi stage build
 
 Turn the docker build from the first example (Java Spring boot https://github.com/appuio/example-spring-boot-helloworld) into a docker multistage build.
+
+---
+
+## Solution:
+
+```
+FROM centos/s2i-base-centos7
+
+EXPOSE 8080
+
+# Install Java, not necessary when using Java Base image
+RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
+    yum install -y $INSTALL_PKGS && \
+    rpm -V $INSTALL_PKGS && \
+    yum clean all -y && \
+    mkdir -p /opt/s2i/destination
+
+USER 1001
+
+ADD ./gradlew /opt/app-root/src/
+ADD gradle /opt/app-root/src/gradle
+ADD build.gradle /opt/app-root/src/
+ADD src /opt/app-root/src/src
+
+# build the application from source
+RUN sh /opt/app-root/src/gradlew build
+
+FROM centos/s2i-base-centos7
+
+EXPOSE 8080
+
+# Install Java
+RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
+    yum install -y $INSTALL_PKGS && \
+    rpm -V $INSTALL_PKGS && \
+    yum clean all -y && \
+    mkdir -p /opt/s2i/destination
+
+USER 1001
+
+# copy the artifact to the build container
+COPY --from=0 /opt/app-root/src/build/libs/springboots2idemo*.jar /opt/app-root/springboots2idemo.jar
+
+CMD java -Xmx64m -Xss1024k -jar /opt/app-root/springboots2idemo.jar
+
+```
 
 
 [← Building your own Docker image](11_build_image.md) |

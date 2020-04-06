@@ -1,17 +1,17 @@
-# Docker Beginners Techlab
+# Docker Basics Techlab
 
-In this Docker Techlab you're going to learn the basics behind the container technology docker.
+In this Docker Techlab you're going to learn the basics behind the container technology Docker.
 
 * Introduction presentation, what are Containers?
 * How to install Docker on your computer?
-* Run Docker Containers
-* Mount local Volumes into Containers
-* Build Docker Containers
+* Run Docker containers
+* Mount local volumes into containers
+* Build Docker containers
 * How networking works
 
 ## Content
 
-[Getting Started Slides](presentation/Docker_Techlab_2.0.odp)
+[Presentation Slides](presentation/Docker_Techlab_2.0.odp)
 
 1. [Installation](labs/01_installation.md)
 1. [Getting Started](labs/02_hello_world.md)
@@ -31,13 +31,12 @@ In this Docker Techlab you're going to learn the basics behind the container tec
 1. [Docker Best Practices](labs/15_bestpractices.md)
 
 
-**extended Labs**
+### Extended Labs
 
 1. create a docker image for your own application
 1. use [docker compose](https://docs.docker.com/compose/) to define multi-container docker applications for dev environments
 1. read and study the [OpenShift image creation guide](https://docs.openshift.com/container-platform/3.6/creating_images/guidelines.html)
 1. create a docker hub account and create a docker build for your own docker image (Dockerfile hosted on github)
-
 
 
 ## Additional Docs
