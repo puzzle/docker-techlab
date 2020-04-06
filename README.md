@@ -11,7 +11,7 @@ In this Docker Techlab you're going to learn the basics behind the container tec
 
 ## Content
 
-[Presentation Slides](presentation/Docker_Techlab_2.0.odp)
+[Presentation Slides](presentation/Docker_Techlab.pdf)
 
 1. [Installation](labs/01_installation.md)
 1. [Getting Started](labs/02_hello_world.md)
