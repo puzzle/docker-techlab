@@ -17,44 +17,36 @@ Let's have a look at the following example:
 The complete example can be found under https://github.com/appuio/example-spring-boot-helloworld
 
 ```
-FROM centos/s2i-base-centos7
+FROM fabric8/java-centos-openjdk11-jdk
 
-EXPOSE 8080
-      
-# Install Java
-RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
-    yum install -y $INSTALL_PKGS && \
-    rpm -V $INSTALL_PKGS && \
-    yum clean all -y && \
-    mkdir -p /opt/s2i/destination
+MAINTAINER Thomas Philipona <philipona@puzzle.ch>
 
-USER 1001
-    
-ADD ./gradlew /opt/app-root/src/
-ADD gradle /opt/app-root/src/gradle
-ADD build.gradle /opt/app-root/src/
-ADD src /opt/app-root/src/src
+EXPOSE 8080 9000
 
-# build the application from source
-RUN sh /opt/app-root/src/gradlew build 
 
-# copy the artifact to the correct location
-RUN cp -a  /opt/app-root/src/build/libs/springboots2idemo*.jar /opt/app-root/springboots2idemo.jar 
+LABEL io.k8s.description="Example Spring Boot App" \
+      io.k8s.display-name="APPUiO Spring Boot App" \
+      io.openshift.expose-services="8080:http" \
+      io.openshift.tags="builder,springboot"
 
-CMD java -Xmx64m -Xss1024k -jar /opt/app-root/springboots2idemo.jar
+RUN mkdir -p /tmp/src/
+ADD . /tmp/src/
 
+RUN cd /tmp/src && sh gradlew build
+
+RUN cp -a  /tmp/src/build/libs/springboots2idemo*.jar /deployments/springboots2idemo.jar
 ```
 
 During the docker build the actual application source code is added to the context and built using the `gradlew build` command.
-Gradle in this case is only used during the build phase, since it produces a jar that is then executed with `java -jar ...` at execution time.
+Gradle in this case is only used during the build phase, since it produces a jar that is then executed with the run-java.sh in the `CMD` of the base image.
 
 **Build phase dependencies**
 
-* Java
+* Java JDK
 * gradle
 
 **Runtime phase dependencies**
-* Java
+* Java JRE
 
 #### Notes regarding Java in Docker
 
@@ -138,52 +130,35 @@ Read more about docker multi stage builds under https://docs.docker.com/develop/
 
 ## LAB: create a multi stage build
 
-Turn the docker build from the first example (Java Spring boot https://github.com/appuio/example-spring-boot-helloworld) into a docker multistage build.
+Turn the docker build from the first example (Java Spring boot https://github.com/appuio/example-spring-boot-helloworld) into a docker multistage build and use the `fabric8/java-centos-openjdk11-jdk` image as source.
 
 ---
 
 ## Solution:
 
 ```
-FROM centos/s2i-base-centos7
+FROM fabric8/java-centos-openjdk11-jdk
 
-EXPOSE 8080
+MAINTAINER Thomas Philipona <philipona@puzzle.ch>
 
-# Install Java, not necessary when using Java Base image
-RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
-    yum install -y $INSTALL_PKGS && \
-    rpm -V $INSTALL_PKGS && \
-    yum clean all -y && \
-    mkdir -p /opt/s2i/destination
+EXPOSE 8080 9000
 
-USER 1001
 
-ADD ./gradlew /opt/app-root/src/
-ADD gradle /opt/app-root/src/gradle
-ADD build.gradle /opt/app-root/src/
-ADD src /opt/app-root/src/src
+LABEL io.k8s.description="Example Spring Boot App" \
+      io.k8s.display-name="APPUiO Spring Boot App" \
+      io.openshift.expose-services="8080:http" \
+      io.openshift.tags="builder,springboot"
 
-# build the application from source
-RUN sh /opt/app-root/src/gradlew build
+RUN mkdir -p /tmp/src/
+ADD . /tmp/src/
 
-FROM centos/s2i-base-centos7
+RUN cd /tmp/src && sh gradlew build
 
-EXPOSE 8080
+FROM fabric8/java-alpine-openjdk11-jre
 
-# Install Java
-RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
-    yum install -y $INSTALL_PKGS && \
-    rpm -V $INSTALL_PKGS && \
-    yum clean all -y && \
-    mkdir -p /opt/s2i/destination
+EXPOSE 8080 9000
 
-USER 1001
-
-# copy the artifact to the build container
-COPY --from=0 /opt/app-root/src/build/libs/springboots2idemo*.jar /opt/app-root/springboots2idemo.jar
-
-CMD java -Xmx64m -Xss1024k -jar /opt/app-root/springboots2idemo.jar
-
+COPY --from=0 /tmp/src/build/libs/springboots2idemo*.jar /deployments/springboots2idemo.jar
 ```
 
 
